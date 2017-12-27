@@ -1,0 +1,109 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block title %}{% endblock %}
+      <style>
+
+           ::-webkit-scrollbar {display:none}
+
+       </style>
+
+    <title>陈坤峰的博客</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
+
+
+
+{#    自定义导航栏#}
+    <style type="text/css">
+        html, body {width:100%;height:100%;} /*非常重要的样式让背景图片100%适应整个屏幕*/
+        .my-navbar {padding:20px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;}
+        .my-navbar a{background:transparent !important;color:#fff !important}
+        .my-navbar a:hover {color:#45bcf9 !important;background:transparent;outline:0}
+        .my-navbar a {transition: color 0.5s ease-in-out;}/*-webkit-transition ;-moz-transition*/
+        .top-nav {padding:0;background: #583d15;}
+        button.navbar-toggle {background-color:#fbfbfb;}/*整个背景都是transparent透明的，会看不到，所以再次覆盖一下*/
+        button.navbar-toggle > span.icon-bar {background-color: #717171
+        }
+    </style>
+
+
+
+</head>
+
+<body style="background-image:url({% static 'images/bg.jpg' %});
+
+        background-attachment:fixed" >
+    <!-- Navigation -->
+    <nav class="navbar my-navbar navbar-fixed-top" role="navigation" >
+        <div class="container-fluid" >
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header"  >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'app:index' %}">Home</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'app:about_me' %}">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    {% block content %}{% endblock content %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p style="text-align: center;">Copyright &copy; Kunfeng's Blog</p>
+            </div>
+            <!-- /.col-lg-12 -->
+            <div class="col-lg-12" style="text-align: center;">
+                 本站已携全家老中青bug，幸福地运行<a id="days">0</a>天</a>
+                <script>
+                var s1 = '2017-08-24';//设置为你的建站时间
+                s1 = new Date(s1.replace(/-/g, "/"));
+                s2 = new Date();
+                var days = s2.getTime() - s1.getTime();
+                var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+                document.getElementById('days').innerHTML = number_of_days;
+                </script>
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        $(window).scroll(function () {
+            if ($(".navbar").offset().top > 50) {$(".navbar-fixed-top").addClass("top-nav");
+            }else {$(".navbar-fixed-top").removeClass("top-nav");}
+        })</script>
+</body>
+</html>
+
